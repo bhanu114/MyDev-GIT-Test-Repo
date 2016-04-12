@@ -1,0 +1,54 @@
+<apex:page standardController="Opportunity" extensions="TestController" tabStyle="Opportunity" docType="html-5.0">
+   
+    <apex:form id="theForm">    
+        <apex:pageBlock >
+         <apex:pageMessages />
+         <apex:messages />
+        <apex:pageBlockButtons >
+                <apex:commandButton id="saveOppty" value="Save" action="{!save}" />
+                
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection >
+                <apex:outputText value="Test Area">
+                <span class="helpButton" id="example-title7-_help"> 
+                <img src="/s.gif" class="helpOrb"/>
+                <script type="text/javascript"> 
+                     sfdcPage.setHelp('example-title7', "Help Text");
+                </script>
+            </span>
+            </apex:outputText>
+            <apex:inputField value="{!Opportunity.Name}">
+            <span class="helpButton" id="example-title7-_help"> 
+                <img src="/s.gif" class="helpOrb"/>
+                <script type="text/javascript"> 
+                     sfdcPage.setHelp('example-title7', "Help Text");
+                </script>
+            </span>
+            </apex:inputField>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection id="dynoSection">
+                <apex:pageBlockTable var="o" value="{!clsLstRFW}" id="rFW">
+                    <apex:column >
+                        <apex:outputText value="Model "/>
+                        <apex:inputText value="{!o.model}"/>
+                    </apex:column>
+                    <apex:column >
+                        <apex:outputText value="Quantity "/>
+                        <apex:inputText value="{!o.quantity}"/>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            <apex:commandButton id="addbtn" style="vertical-align:left;" action="{!addRow}" value="Add" rerender="dynoSection"/>
+            <apex:commandButton id="delbtn" rendered="true" style="vertical-align:center;" action="{!delRow}" value="Delete" rerender="dynoSection"/>
+    </apex:pageBlock>
+    
+    <apex:pageBlock >
+        <apex:pageBlockSection >
+            <apex:pageBlockSectionItem >
+                Date: <apex:inputText value="{!dat}" size="10" id="demo" onfocus="DatePicker.pickDate(false, this , false);" />   
+            </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

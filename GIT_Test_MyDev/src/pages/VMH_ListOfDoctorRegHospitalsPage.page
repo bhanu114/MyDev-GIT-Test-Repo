@@ -1,0 +1,16 @@
+<apex:page standardController="Doctor__c" extensions="VMH_ListOfDoctorRegHospitalsCtrl">
+ 
+ <apex:form >
+    <apex:pageBlock >
+        <apex:pageBlockButtons >
+                <apex:commandButton action="{!addWorkingHospital}" value="Add Working Hospital"/>
+            </apex:pageBlockButtons>
+        <apex:pageBlockTable value="{!hList}" var="had" >
+            <apex:column value="{!had.Name}"/>
+            <apex:column value="{!had.Country__c}"/>
+            <apex:column value="{!had.State__c}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+    
+ </apex:form>
+</apex:page>

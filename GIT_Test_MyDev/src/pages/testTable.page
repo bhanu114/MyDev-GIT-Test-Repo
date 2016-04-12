@@ -1,0 +1,51 @@
+<apex:page controller="TestController1" id="test" contentType="application/vnd.ms-excel#MFG.xls">
+    <apex:form id="my_Form">
+         <apex:pageBlock >
+
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!doSomething}" value="Search"/>
+            </apex:pageBlockButtons>
+        <apex:pageBlockSection title="Visual Output" >
+                        
+                        <!--<table border="0" >
+                            <tr>
+                            <apex:dataTable var="cases" value="{!monthHeader}">
+                                <th>{!cases}</th>
+                            </apex:dataTable>
+                            </tr>
+                            
+                        </table>-->
+
+
+                        
+                        <apex:pageBlockTable value="{!twList}" var="plw">
+                            <apex:column >
+                                <apex:facet name="header" >Name</apex:facet>
+                                <apex:outputlabel value="{!plw.Name}" />
+                            </apex:column>
+                            <apex:repeat value="{!monthHeader}" var="node" >
+                                <apex:column >
+                                <apex:facet name="header" >{!node}</apex:facet>
+                                <apex:outputlabel value="{!plw.nodes[ZERO].value}" / >
+                            </apex:column>
+                            </apex:repeat>
+                            <apex:variable var="idx" value="{!0}"/>
+                            <apex:repeat value="{!monthHeader}" var="item">
+                                <apex:outputPanel rendered="{!NOT(idx == 0)}">, </apex:outputPanel>
+                                <apex:outputPanel >
+                                    <apex:outputText value="{!idx }" />
+                                </apex:outputPanel>
+                                <apex:variable var="idx" value="{!idx + 1}" />
+                            </apex:repeat>
+                            <!--<apex:repeat value="{!plw.nodes}" var="node" >
+                                <apex:column >
+                                <apex:outputlabel value="{!node.value}" / >
+                            </apex:column>
+                            </apex:repeat>-->
+                        </apex:pageBlockTable>
+                        
+            </apex:pageBlockSection>
+         
+         </apex:pageBlock>
+         </apex:form>
+</apex:page>

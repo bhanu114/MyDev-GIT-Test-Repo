@@ -1,0 +1,16 @@
+<apex:page id="thePage" showHeader="true">
+<apex:includeScript value="{!URLFOR($Resource.jQuery1)}"  />
+     
+      <script type="text/javascript">
+         var j$ = jQuery.noConflict();
+ 
+        j$(document).ready(function(){
+            j$("#ninjaLink").click(function() {
+                alert("NINJA STAR TO FACE!!!!!");
+            });
+        });
+     </script>        
+     <apex:outputText id="test">test</apex:outputText>
+    <p id="ninjaLink">NINJA ATTACK!</p>
+ 
+</apex:page>

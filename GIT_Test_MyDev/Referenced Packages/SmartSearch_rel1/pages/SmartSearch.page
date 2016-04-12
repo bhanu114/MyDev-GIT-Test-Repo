@@ -1,0 +1,70 @@
+<apex:page controller="csc_search.CodeExplorer" sidebar="false">
+  <apex:pageBlock >
+      <apex:pageBlockSection title="Search">
+          <apex:pageBlockSectionItem >
+              <apex:outputPanel >
+                  <apex:form >
+                      <table>
+                          <tr>
+                              <td>
+                                  <apex:outputLabel >Search Keyword:</apex:outputLabel>
+                              </td>
+                              <td>
+                                  <apex:inputText value="{!keyword}"/>
+                              </td>
+                              <td>
+                                    Within:
+                              </td>
+                              <td>
+                                    <apex:selectList size="1"  value="{!selectedVal}">
+                                        <apex:selectOption itemValue="Apex Classes"></apex:selectOption>
+                                        <apex:selectOption itemValue="Apex Triggers"></apex:selectOption>
+                                        <apex:selectOption itemValue="Visualforce Pages"></apex:selectOption>
+                                        <apex:selectOption itemValue="Apex Components"></apex:selectOption>
+                                        <apex:selectOption itemValue="Email Templates"></apex:selectOption>
+                                    </apex:selectList>
+                              </td>                              
+                              <td>
+                                  Search Type:
+                              </td>
+                              <td>
+                                    <apex:selectList size="1"  value="{!searchType}">
+                                        <apex:selectOption itemValue="Greedy"></apex:selectOption>
+                                        <apex:selectOption itemValue="Lazy"></apex:selectOption>                                        
+                                    </apex:selectList>
+                              </td>
+                              <td>
+                                  <apex:commandButton value="Search" reRender="Results,status" action="{!search}" status="searchAction"/>
+                              </td>
+                          </tr>
+                      </table>                  
+                  </apex:form>           
+                  <apex:pageMessages id="status" />
+              </apex:outputPanel>        
+          </apex:pageBlockSectionItem>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Results">
+          <apex:pageblockSectionItem >
+               <apex:outputPanel id="Results">              
+                    <div style="margin-left:12px">
+                        <apex:actionStatus startText="Searching..." id="searchAction"> 
+                            <apex:facet name="start">
+                                Searching...<img src="{!HTMLENCODE($Resource.Processing)}" border="0" />
+                            </apex:facet>
+                        </apex:actionStatus> 
+                    </div>
+                  <apex:pageBlockTable value="{!nameList}" var="cls" width="1000" rendered="{!isResultVisible}">
+                      <apex:column headerValue="Type" value="{!cls.type}"/>
+                      <apex:column headerValue="Name">
+                          <apex:form >
+                              <a href="https://{!HTMLENCODE(host)}/{!HTMLENCODE(cls.recordId)}" target="_blank">{!HTMLENCODE(cls.name)}</a>
+                          </apex:form>
+                      </apex:column>                      
+                      <apex:column headerValue="Snippet" value="{!cls.snippet}"/>
+                      <apex:column headerValue="Line number" value="{!cls.line}"/>
+                  </apex:pageBlockTable>
+              </apex:outputPanel>
+          </apex:pageblockSectionItem>
+      </apex:pageBlockSection>
+  </apex:pageBlock>
+</apex:page>

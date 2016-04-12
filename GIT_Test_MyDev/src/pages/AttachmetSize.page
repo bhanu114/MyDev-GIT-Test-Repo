@@ -1,0 +1,62 @@
+<apex:page standardController="Account" extensions="AddAttachmentExt">
+  <apex:includeScript value="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js"/>
+  <apex:form >
+    <apex:sectionHeader title="{!Account.name} Attachments" />
+    <apex:pageBlock mode="maindetail">
+      <apex:pageBlockSection title="Existing Attachments" columns="1">
+        <apex:PageBlockTable value="{!Account.Attachments}" var="attach">
+          <apex:column value="{!attach.Name}" />
+          <apex:column headerValue="Length (bytes)" value="{!attach.BodyLength}" />
+          <apex:column headerValue="Owner" value="{!attach.Owner.Name}" />
+        </apex:PageBlockTable>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Add Attachment">
+        <apex:inputFile filename="{!att.Name}"  value="{!att.Body}" />
+        <apex:commandButton value="Upload" action="{!addAttachment}" onclick="return checkFileSize();"/>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form>
+  
+  <script>
+    function getIEFileSize(file){
+        var myFSO = new ActiveXObject("Scripting.FileSystemObject"),
+        filepath = file.value,
+        thefile = myFSO.getFile(filepath);
+        return thefile.size;
+    }
+ 
+    function checkFileSize()
+    {
+        var goodSize = true;
+        $('input[type=file]').each(function()
+        {
+            if(typeof this.files[0] !== 'undefined')
+            {
+                var file = this.files[0],
+                size = typeof ActiveXObject !== 'undefined' ?
+                    getIEFileSize(file)
+                    :
+                    file.fileSize || file.size;
+ 
+                goodSize = 25000000 > size;
+                if(!goodSize)
+                {
+                    alert(this.files[0].name +' is too large - please choose a file that is 25Mb or less');
+                }
+                else
+                {
+                    if (2000000 < size)
+                    {
+                        goodSize=confirm('The file size is ' + size + 
+                            ' bytes - this may take some time. Are you sure you wish to continue');
+                    }
+                }
+ 
+                return goodSize;
+            }
+        });
+        return goodSize;
+    }
+ 
+  </script>
+</apex:page>

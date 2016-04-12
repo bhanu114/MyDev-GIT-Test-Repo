@@ -1,0 +1,6 @@
+<apex:component controller="TestCompCtrl">
+      <apex:attribute name="value" description="" 
+                      type="String" required="true" 
+                      assignTo="{!selectedValue}">
+      </apex:attribute>
+</apex:component>

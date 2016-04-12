@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SmartSearch_rel1</fullName>
+    <apiAccessLevel>Unrestricted</apiAccessLevel>
+    <namespacePrefix>csc_search</namespacePrefix>
+    <types>
+        <members>CodeExplorer</members>
+        <members>TestCodeExplorer</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>SmartSearch</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>SmartSearch</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>Processing</members>
+        <name>StaticResource</name>
+    </types>
+    <version>30.0</version>
+</Package>

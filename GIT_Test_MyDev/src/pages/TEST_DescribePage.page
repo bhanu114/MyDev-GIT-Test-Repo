@@ -1,0 +1,43 @@
+<apex:page controller="TEST_DescribeController">
+  <apex:form >
+  <apex:pageMessages />
+         <apex:pageBlock title="SObject Name"> 
+            <apex:pageBlockButtons location="Top">              
+                  <apex:commandButton value="Search"  >
+                    <apex:actionSupport event="onClick" action="{!search}" rerender="resultSection"/> 
+                  </apex:commandButton>
+                  
+            </apex:pageBlockButtons>
+              <apex:outputPanel layout="block" rendered="false" style="border: 1px solid #D4DADC; padding: 5px 2px 4px 5px;">
+                    <span>No records to display</span>
+              </apex:outputPanel>
+              
+              <apex:pageBlockSection id="dynoSection">
+                <apex:pageBlockTable var="o" value="{!lstONW}" id="lstONW">
+                    <apex:column >
+                        <apex:outputText value="Object Name : "/>
+                        <apex:inputText value="{!o.objName}"/>
+                    </apex:column>
+                    <apex:column >
+                       <apex:commandButton id="delbtn" rendered="true" style="vertical-align:center;" action="{!delRow}" value="Delete" rerender="dynoSection"/>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            <apex:commandButton id="addbtn" style="vertical-align:left;" action="{!addRow}" value="Add" rerender="dynoSection"/>
+        </apex:pageBlock>
+        
+        
+        <apex:pageBlock title="Result" id="resultSection" > 
+        <apex:pageBlockSection id="dynoResult" rendered="{!hasResult}" >
+                <apex:pageBlockTable var="o" value="{!lstONW}" id="lstONW">
+                    <apex:column >
+                        <apex:outputText value="Object Name "/>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+    </apex:pageBlock>
+     
+    </apex:form>  
+    
+    
+</apex:page>

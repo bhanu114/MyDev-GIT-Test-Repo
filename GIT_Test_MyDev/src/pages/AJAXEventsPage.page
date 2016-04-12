@@ -1,0 +1,26 @@
+<apex:page standardController="Opportunity" extensions="AJAXEventsController" recordSetVar="opslst">
+    
+    <apex:pageBlock >
+        <apex:form id="theForm">
+            <!-- ******************** Oppty list section Start ************** -->
+            <apex:panelGrid columns="2">
+            <apex:pageBlockSection >
+                <apex:datatable var="o" value="{!opslst}" id="list">
+                    <apex:inputField value="{!o.Name}"/>
+                    <apex:outputText value="{!o.stageName}">
+                        <apex:actionsupport event="onChange" action="{!refreshPage}"/>
+                    </apex:outputText>
+                </apex:datatable>
+            </apex:pageBlockSection>
+            </apex:panelGrid>
+            <!-- ******************** Oppty list section Start ************** -->
+            
+            <!-- ******************** Action support section Start ************** -->
+            <apex:pageBlockSection >
+                <apex:outputLabel value="View:">
+                </apex:outputLabel>
+            </apex:pageBlockSection>
+            <!-- ******************** Action support section End ************** -->
+        </apex:form>
+    </apex:pageBlock>
+</apex:page>

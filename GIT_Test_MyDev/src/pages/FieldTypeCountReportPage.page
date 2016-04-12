@@ -1,0 +1,83 @@
+<!-- Page Name : FielTypeCountReportPage -->
+
+<apex:page Controller="FieldTypeCountController" >
+    <apex:form > 
+      <apex:pageBlock >
+          <apex:pageBlockSection >
+                  <apex:outputlabel value="Object Names :"/> 
+                      <apex:actionRegion >      
+                           <apex:selectList value="{!selectedObject}" size="1">
+                                    <apex:selectOptions value="{!ObjectNames}"/>
+                                    <apex:actionSupport event="onchange" action="{!doObjectFieldTypeCount}" reRender="myFields"/>
+                            </apex:selectList>
+                     </apex:actionRegion>
+                      <apex:outputPanel id="myFields" > 
+                      <apex:outputPanel rendered="{!IF(ftwList.size > 0,true,false)}">
+                      <apex:outputlabel value="Field Names : {!ftwList.size}"  />
+                        <!--<apex:actionRegion >-->
+                           <apex:datatable var="ftw" value="{!ftwList}" id="list" >
+                          
+                           <apex:column colspan="2">
+                               <apex:facet name="header">Name</apex:facet>
+                               <apex:outputText value="{!ftw.objName}"/>
+                            </apex:column>
+                            <apex:column >
+                               <apex:facet name="header">Text Field Count</apex:facet>
+                               <apex:outputText value="{!ftw.textCount}"/>
+                            </apex:column>
+                            <apex:column colspan="2">
+                               <apex:facet name="header">Number Field Count</apex:facet>
+                               <apex:outputText value="{!ftw.numberCount}"/>
+                            </apex:column>
+                            <apex:column colspan="2">
+                               <apex:facet name="header">Formula Field Count</apex:facet>
+                               <apex:outputText value="{!ftw.formulaCount}"/>
+                            </apex:column>
+                            <apex:column colspan="2">
+                               <apex:facet name="header">Picklist Field Count</apex:facet>
+                               <apex:outputText value="{!ftw.piclstCount}"/>
+                            </apex:column>
+                            <apex:column >
+                               <apex:facet name="header">Checkbox Field Count</apex:facet>
+                               <apex:outputText value="{!ftw.booleanCount}"/>
+                            </apex:column>
+                            <apex:column >
+                               <apex:facet name="header">Currency Field Count</apex:facet>
+                               <apex:outputText value="{!ftw.currencyCount}"/>
+                            </apex:column>
+                            <apex:column >
+                               <apex:facet name="header">Date Field Count</apex:facet>
+                               <apex:outputText value="{!ftw.dateCount}"/>
+                            </apex:column>
+                            <apex:column >
+                               <apex:facet name="header">DateTime Field Count</apex:facet>
+                               <apex:outputText value="{!ftw.dateTimeCount}"/>
+                            </apex:column>
+                            <apex:column >
+                               <apex:facet name="header">Phone Field Count</apex:facet>
+                               <apex:outputText value="{!ftw.phoneCount}"/>
+                            </apex:column>
+                            <apex:column >
+                               <apex:facet name="header">Combobox Field Count</apex:facet>
+                               <apex:outputText value="{!ftw.comboboxCount}"/>
+                            </apex:column>
+                            <apex:column >
+                               <apex:facet name="header">Double Field Count</apex:facet>
+                               <apex:outputText value="{!ftw.doubleCount}"/>
+                            </apex:column>
+                            <apex:column >
+                               <apex:facet name="header">Email Field Count</apex:facet>
+                               <apex:outputText value="{!ftw.emailCount}"/>
+                            </apex:column>
+                            <apex:column >
+                               <apex:facet name="header">EncriptedString Field Count</apex:facet>
+                               <apex:outputText value="{!ftw.encryptedStringCount}"/>
+                            </apex:column>
+                            </apex:datatable>
+                        <!--</apex:actionRegion> -->     
+                     </apex:outputPanel>
+                     </apex:outputPanel>
+          </apex:pageBlockSection>
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

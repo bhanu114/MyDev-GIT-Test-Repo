@@ -1,0 +1,46 @@
+<apex:page controller="BatchJobIndexController" id="pg">
+    <apex:form id="fm">
+        <apex:outputPanel id="inputinfo">
+            <apex:pageBlock id="ip_mainblock" >
+                <apex:pageBlockButtons >
+                    <apex:commandButton action="{!doSearch}" value="Search" />
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection columns="4" >
+                    
+                    
+                    Select Job Type:: <apex:selectList value="{!selectedJobType}" title="Select Job Type" multiselect="false" size="1" >
+                    <apex:selectOptions value="{!jobTypeOptions}"/>
+                    </apex:selectList>                   
+                    Select Status::<apex:selectList value="{!selectedstatus}" title="Select Status" multiselect="false" size="1" >
+                    <apex:selectOptions value="{!StatusOptions}"/>
+                    </apex:selectList>     
+                    Select Apex::<apex:selectList value="{!selectedapexClass}" title="Select Apex" multiselect="false" size="1" >
+                    <apex:selectOptions value="{!apexClassOptions}"/>
+                    <apex:actionSupport event="onchange" rerender="method"/>
+                    </apex:selectList>                      
+                    Select Method::<apex:selectList id="method" value="{!selectedmethodName}" title="Select Method" multiselect="false" size="1" >
+                    <apex:selectOptions value="{!methodNameOptions}"/>
+                    </apex:selectList>   
+                </apex:pageBlockSection>
+                
+            </apex:pageBlock>
+        </apex:outputPanel>
+        <apex:outputPanel id="outputinfo">
+            <apex:pageBlock >
+                <apex:pageBlockTable value="{!jobsToDisplay}" var="j" >
+                    <apex:column value="{!j.CreatedDate}" />
+                    <apex:column value="{!j.JobType}" />
+                    <apex:column value="{!j.Status}" />
+                    <apex:column value="{!j.ExtendedStatus}" />
+                    <apex:column value="{!j.TotalJobItems}" />
+                    <apex:column value="{!j.JobItemsProcessed}" />
+                    <apex:column value="{!j.CreatedBy.name}" />
+                    <apex:column value="{!j.CompletedDate}" />
+                    <apex:column value="{!j.MethodName}" />
+                    <apex:column value="{!j.ApexClass.name}" />
+                    <apex:column value="{!j.id}" />
+                </apex:pageBlockTable>
+            </apex:pageBlock>
+        </apex:outputPanel>       
+    </apex:form>
+</apex:page>

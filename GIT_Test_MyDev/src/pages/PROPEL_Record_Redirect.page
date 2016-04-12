@@ -1,0 +1,7 @@
+<apex:page Controller="PROPEL_Record_RedirectController" action="{!redirect}">
+<apex:form >
+ <apex:pageBlock >
+    <apex:pageMessages id="msgs"></apex:pageMessages>
+ </apex:pageBlock> 
+</apex:form>
+</apex:page>

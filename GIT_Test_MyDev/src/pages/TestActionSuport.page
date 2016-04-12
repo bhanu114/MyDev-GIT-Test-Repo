@@ -1,0 +1,24 @@
+<!--  Page: -->
+<apex:page controller="exampleCon">
+    <apex:form >
+    <apex:pageBlock >
+        <apex:outputpanel id="counter">
+            <apex:outputText value="Click Me!: {!count}"/>
+            Select Object : <apex:selectList value="{!selectedObjectName}" size="1" title="Select Object" multiSelect="false" >
+                <apex:selectOptions value="{!objectNameOptions}"/>
+            <apex:actionSupport event="onchange" 
+                                action="{!initObjNames}" 
+                                rerender="showObjects" status="counterStatus"/>
+            </apex:selectList>
+            
+        </apex:outputpanel>
+        
+        <apex:actionStatus id="counterStatus" 
+                           startText=" (incrementing...)" 
+                           stopText=" (done)"/>
+        <apex:pageBlockSection id="showObjects">
+            
+        </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

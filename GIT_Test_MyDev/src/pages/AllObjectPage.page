@@ -1,0 +1,27 @@
+<apex:page sidebar="false" controller="AllObjectCtrl">
+    <apex:form >
+        <apex:pageBlock title="All Objects in Org">
+        <apex:pageBlockSection >
+            Select Object : <apex:selectList value="{!selectedObjectName}" size="1" title="Select Object" multiSelect="false" >
+                <apex:actionSupport event="onchange" 
+                action="{!setObjectFieldNames}"
+                rerender="showFields"
+                status="statusStart"/><!-- action="{!setObjectFieldNames}" -->
+                <apex:selectOptions value="{!objectNameOptions}"/>
+            </apex:selectList>
+        </apex:pageBlockSection>
+        <apex:outputpanel id="showFields">
+            <apex:pageBlockSection rendered="{!if(len(selectedObjectName) != 0,true,false)}">
+                Select Field : <apex:selectList value="{!selectedField}" size="1">
+                        <apex:selectOptions value="{!ObjectFieldNameList}"/>
+                              </apex:selectList>
+            </apex:pageBlockSection>
+        </apex:outputpanel>
+       </apex:pageBlock>
+    </apex:form>
+    <script>
+        function sayHello(){
+            alert('Hellow');
+        }
+    </script>
+</apex:page>
